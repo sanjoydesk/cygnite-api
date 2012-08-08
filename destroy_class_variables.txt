@@ -1,0 +1,44 @@
+<?php 
+class Foo 
+{ 
+   public $a; 
+   public $b; 
+   public function clearAllVars() 
+   { 
+      $vars = get_object_vars($this); 
+      foreach($vars as $key => $val) 
+      { 
+         $this->$key = null; 
+      } 
+   } 
+} 
+
+// TEST: 
+?> 
+<pre><?php 
+$foo = new Foo(); 
+$foo->a = 'a'; 
+$foo->b = 'b'; 
+$foo->c = 'c'; // create new object variable 
+var_dump($foo); 
+$foo->clearAllVars(); 
+var_dump($foo); 
+?></pre>
+Output:
+Code:
+object(Foo)#1 (3) {
+  ["a"]=>
+  string(1) "a"
+  ["b"]=>
+  string(1) "b"
+  ["c"]=>
+  string(1) "c"
+}
+object(Foo)#1 (3) {
+  ["a"]=>
+  NULL
+  ["b"]=>
+  NULL
+  ["c"]=>
+  NULL
+}
