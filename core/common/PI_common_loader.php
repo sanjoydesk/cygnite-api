@@ -15,7 +15,8 @@
 * ============================================================================
 */
 
-    function load_file($class, $directory = 'common', $prefix = 'PI_') {
+    function load_file($class, $directory = 'common', $prefix = 'PI_') 
+    {
 
          $directories = array(PI_BASEPATH, APPPATH);        
          $_has_classes = "";
@@ -53,4 +54,15 @@
                                      }
                      }
          return $_has_classes;
+}
+/*
+ * Unset All object which unused
+ * @param array()
+ * @unset objects
+ */
+ function unsetobjects($objArray = array())
+{
+       foreach($objArray as $objvars) {              
+              unset($objvars);
+       }
 }

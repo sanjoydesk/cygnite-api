@@ -11,6 +11,7 @@
 * @Developed   :         PHP-ignite Team
 * =============================================================================
 */
+//namespace PI_uri;
 
 class PI_uri {
     
@@ -93,18 +94,31 @@ class PI_uri {
         *
         */
 
-        function urlstucture() {
-
-          
+        function urlstucture($defaultController="") 
+        {          
                     $uristring = explode('/',($_SERVER['REQUEST_URI']));
                     $indexCount = array_search('index.php',$uristring);
                     
                     $controller = "";
                     if(file_exists(APPPATH."controllers/".$uristring[$indexCount+1].EXT)) {
-                          require_once(APPPATH."controllers/".$uristring[$indexCount+1].EXT);
-                         $controller = new $uristring[$indexCount+1]();
-                     }
-                    call_user_func_array(array($controller, $uristring[$indexCount+2]), (array_slice($uristring,$indexCount+3)));
+                                  require_once(APPPATH."controllers/".$uristring[$indexCount+1].EXT);
+                                 $controller = new $uristring[$indexCount+1]();
+                     }                     
+                     if(empty($indexCount) AND empty($controller)) {     
+                                require_once(APPPATH."controllers/".$defaultController.EXT);
+                               $controller = new $defaultController();
+                               call_user_func_array(array($controller,'index'), (array_slice($uristring,$indexCount+1)));
+                               unset($controller);                           
+                    } 
+                      if(!empty($controller)) {
+                                    if($uristring[$indexCount+2] == "") {
+                                            $uristring[$indexCount+2] = 'index';
+                                    }
+                                 call_user_func_array(array($controller, $uristring[$indexCount+2]), (array_slice($uristring,$indexCount+3)));
+                                 unset($controller);
+                     } else{
+                                $this->redirect('index.php/'.$defaultController.'/index');
+                   }
             }
 
 }

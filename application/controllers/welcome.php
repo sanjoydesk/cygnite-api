@@ -14,8 +14,8 @@ class welcome extends PI_Controller {
 
         public function index() {
             $data['userdetails']= $this->model->getUserComments();        
-            echo $encryt= $this->library->PI_encrypt("admin");
-            echo $this->library->PI_decrypt($encryt);
+            $encryt= $this->library->PI_encrypt("admin");
+            $this->library->PI_decrypt($encryt);
 
            // $this->clearAllVars();
                 //$this->unset_all_vars($this);
