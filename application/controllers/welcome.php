@@ -2,7 +2,7 @@
 
 class welcome extends PI_Controller {
         
-            private $model = NULL;
+            private $model = NULL,$library = NULL,$profiler = NULL;
 
            function __construct() {
                parent::__construct();           
@@ -12,22 +12,15 @@ class welcome extends PI_Controller {
                $this->profiler->start_profiling();
           }
 
-        public function index() {
-            $data['userdetails']= $this->model->getUserComments();        
-            $encryt= $this->library->PI_encrypt("admin");
-            $this->library->PI_decrypt($encryt);
-
-           // $this->clearAllVars();
-                //$this->unset_all_vars($this);
-            $data['values'] = "Sanjay";
-           // var_dump($this); 
-            
-            $obj_var  =  $this->load->_loaded_obj();
-            var_dump($obj_var);
-            
-            $this->load->presenter("welcome",$data);
-            $this->profiler->end_profiling();
-        }
+        public function index() 
+        {
+                $data['userdetails']= $this->model->getUserComments();        
+                $encryt= $this->library->PI_encrypt("admin");
+                $this->library->PI_decrypt($encryt);
+                $data['values'] = "Sanjay";            
+                $this->load->presenter("welcome",$data); 
+                $this->profiler->end_profiling();
+      }
          public function clearAllVars() 
        { 
           $vars = get_object_vars($this); 
@@ -53,13 +46,15 @@ class welcome extends PI_Controller {
 
 
         function test() {
-            echo "<br>test"."<br>";        
+            echo "<br>test"."<br>";     
+            $this->profiler->end_profiling();
         }
-    
-//        function __destruct() {
-//       //parent::__destruct();
-//            unset($this);
-//   }
+      
+        function __destruct() {
+       //parent::__destruct();
+            unset($this);
+            echo gc_collect_cycles();      
+   }
         
 }
 

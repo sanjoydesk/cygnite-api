@@ -15,6 +15,9 @@
 
 class PI_uri {
     
+         private $index_page = "index.php";
+         private $default_method = "index";
+    
         /**
         * Header Redirect
         *
@@ -24,7 +27,7 @@ class PI_uri {
         * @return	string
         */
 
-        function redirect($uri = '', $method = 'location', $http_response_code = 302)
+        function redirect($uri = '', $type = 'location', $http_response_code = 302)
         {
             
             if ( ! preg_match('#^https?://#i', $uri))
@@ -32,7 +35,7 @@ class PI_uri {
                 $uri = $this->site_url($uri);
             }
 
-            switch($method)
+            switch($type)
             {
                 case 'refresh'     : header("Refresh:0;url=".$uri);
                                                 break;
@@ -60,7 +63,7 @@ class PI_uri {
         function urisegment($uri="") {
                 $uristring = "";
                 $uristring = explode('/',($_SERVER['REQUEST_URI']));
-                $indexCount = array_search('index.php',$uristring);
+                $indexCount = array_search($this->index_page,$uristring);
                     try {
                         if($uri !="") {  return @$uristring[$indexCount+$uri]; }
                     } catch (Exception $ex) {
@@ -97,29 +100,37 @@ class PI_uri {
         function urlstucture($defaultController="") 
         {          
                     $uristring = explode('/',($_SERVER['REQUEST_URI']));
-                    $indexCount = array_search('index.php',$uristring);
+                    $indexCount = array_search($this->index_page,$uristring);
                     
-                    $controller = "";
+                    $_obj_controller = "";
                     if(file_exists(APPPATH."controllers/".$uristring[$indexCount+1].EXT)) {
                                   require_once(APPPATH."controllers/".$uristring[$indexCount+1].EXT);
-                                 $controller = new $uristring[$indexCount+1]();
+                                 $_obj_controller = new $uristring[$indexCount+1]();
                      }                     
-                     if(empty($indexCount) AND empty($controller)) {     
+                     if(empty($indexCount) AND empty($_obj_controller)) {     
                                 require_once(APPPATH."controllers/".$defaultController.EXT);
-                               $controller = new $defaultController();
-                               call_user_func_array(array($controller,'index'), (array_slice($uristring,$indexCount+1)));
-                               unset($controller);                           
+                               $_obj_controller = new $defaultController();
+                               call_user_func_array(array($_obj_controller,$this->default_method), (array_slice($uristring,$indexCount+1)));
+                               unset($_obj_controller);                           
                     } 
-                      if(!empty($controller)) {
+                      if(!empty($_obj_controller)) {
                                     if($uristring[$indexCount+2] == "") {
-                                            $uristring[$indexCount+2] = 'index';
+                                            $uristring[$indexCount+2] = $this->default_method;
                                     }
-                                 call_user_func_array(array($controller, $uristring[$indexCount+2]), (array_slice($uristring,$indexCount+3)));
-                                 unset($controller);
-                     } else{
-                                $this->redirect('index.php/'.$defaultController.'/index');
+                                 call_user_func_array(array($_obj_controller, $uristring[$indexCount+2]), (array_slice($uristring,$indexCount+3)));
+                                 unset($_obj_controller);
+                     } else{ 
+                                $this->redirect($this->index_page.'/'.$defaultController.'/'.$this->default_method);
                    }
             }
-
+            /*
+             *  This method is used to destroy the global variables of the class
+             * @param variable
+             * @param variable
+             * 
+             */
+            function __destruct() {
+                   unset($this->index_page);
+                   unset($this->default_method);
+            }
 }
-?>

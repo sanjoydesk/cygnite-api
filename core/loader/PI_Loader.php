@@ -22,6 +22,7 @@ require_once(PI_BASEPATH.'/database/DB_model'.EXT);
 class PI_Controller extends load{
 
            var $load=NULL;
+           private static $object;
             //=====================================================================
             /**
             * Constructor function
@@ -31,9 +32,23 @@ class PI_Controller extends load{
             * @return	load class object
             *
             */
-           function __construct(){
+           function __construct(){ 
+               self::$object = $this;
                $this->load = new load();
               return $this->load;
+           }
+           /*
+            * Create the self object of the class
+            * @return object
+            * 
+            */
+           public function get_object() {
+                    return self::$object;
+           }
+           
+           function __destruct() {
+               unset($this->load);
+               unset($object);
            }
 }
 
@@ -54,5 +69,9 @@ class PI_Model extends PI_Database {
                   $this->db = new PI_Database();
                   return $this->db;
                }
-
+               
+               function __destruct() {
+                   unset($this->db);
+               }
+               
 }

@@ -35,9 +35,9 @@ class profiler {
         * @param	string
         */
 
-       public function end_profiling() {            
-                    print round(microtime(true) - START_TIME, 5). ' seconds';
-                    print " &nbsp; &nbsp; &nbsp;Total memory - ".$this->memory_space_usage();          
+       public function end_profiling() {         
+                    print "Total elapsed time : ".round(microtime(true) - START_TIME, 4). ' seconds';
+                    print " &nbsp; &nbsp; &nbsp;Total memory :".$this->memory_space_usage();          
         }
         
         /**
@@ -48,7 +48,6 @@ class profiler {
         */
 
        public function memory_space_usage() {   
-                   //memory_get_peak_usage();
                     return round(((memory_get_usage() - MEMORY_START_POINT) / 1024), 2). ' kB<br />';          
         }
         

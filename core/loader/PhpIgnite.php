@@ -27,6 +27,10 @@ define('PI_VERSION', '1.0');
 */
 require(PI_BASEPATH.'/common/PI_common_loader'.EXT);
 
+// Load the PI controller class
+require PI_BASEPATH.'/loader/PI_Loader'.EXT;
+
+
 $default_files = array('uri','profiler');
 
 //$URI = load_file('uri','common');
@@ -35,8 +39,7 @@ $OBJ_LOADER = load_file($default_files,'common');
 $CONFIG = load_file('config','configs');
 $AUTOLOAD = load_file('autoload','configs');
 
-// Load the PI controller class
-require PI_BASEPATH.'/loader/PI_Loader'.EXT;
+
 
 //Get the configuration variables
 $defaultController = $CONFIG['PI_config']['GLOBAL_VAR']["default_controller"];
@@ -59,7 +62,12 @@ $url_string = $OBJ_LOADER[0]->urisegment('1');
 if(empty($url_string)) {
          $OBJ_LOADER[0]->redirect($defaultController."/index");
 }
-/* */
+
+
+function get_object(){
+    return PI_Controller::get_object();
+}
+/* Rewrite url structure*/
 $OBJ_LOADER[0]->urlstucture($defaultController);
 
 $objects = array($CONFIG,$AUTOLOAD,$OBJ_LOADER);

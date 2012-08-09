@@ -88,11 +88,10 @@ class load {
                       * 
                       */
                      public function _loaded_obj() {
-                         //spl_autoload_register();
-                         spl_autoload_register('load_file','profiler');
-                         
-                            include_once(PI_BASEPATH.'/loader/PhpIgnite'.EXT);                
-                          
+                         //spl_autoload_register();                         
+                            include_once(PI_BASEPATH.'/loader/PhpIgnite'.EXT);       
+                            $this->PI =& get_object();
+                            return $this->PI;
                      }
                      
 }
