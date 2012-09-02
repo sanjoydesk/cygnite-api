@@ -27,7 +27,7 @@
 
                         $data = array();
                         $data = $this->db->find("id,Name,EntryDate,Comment")->get_details("guestbook");
-                      //  $this->db->close_connection();
+                        $this->db->close_connection();
                         return $data;
                 }
 

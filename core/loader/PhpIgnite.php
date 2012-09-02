@@ -64,11 +64,12 @@ if(empty($url_string)) {
 }
 
 
-function get_object(){
-    return PI_Controller::get_object();
+function &get_instance() {
+         return PI_Controller::get_instance();
 }
 /* Rewrite url structure*/
 $OBJ_LOADER[0]->urlstucture($defaultController);
 
 $objects = array($CONFIG,$AUTOLOAD,$OBJ_LOADER);
 unsetobjects($objects);
+

@@ -23,6 +23,7 @@ class PI_Controller extends load{
 
            var $load=NULL;
            private static $object;
+          
             //=====================================================================
             /**
             * Constructor function
@@ -33,7 +34,7 @@ class PI_Controller extends load{
             *
             */
            function __construct(){ 
-               self::$object = $this;
+              // self::$object = $this;
                $this->load = new load();
               return $this->load;
            }

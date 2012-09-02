@@ -25,6 +25,7 @@ $PI_config = array();
 return $PI_config = array(
                                   /*
                                   * Set Database Configuration
+                                  * To connect Multiple database connection use db2,db3.... etc 
                                   * @prototype set database host_name
                                   * @prototype set database username
                                   * @prototype set database password
@@ -34,13 +35,24 @@ return $PI_config = array(
                                   * @prototype set database persistance connection TRUE or FALSE
                                   */
                                   'DB_CONFIG' => array(
-                                                                            'host_name' => 'localhost',
-                                                                            'username'  => 'root',
-                                                                            'password'  => '',
-                                                                            'dbname'    => 'phpigniter',
-                                                                            'dbprefix'  => '',
-                                                                            'dbtype'    => 'mysql',
-                                                                            'pconnection' =>FALSE
+                                                                          'db1' =>array( 
+                                                                                                                    'host_name' => 'localhost',
+                                                                                                                    'username'  => 'root',
+                                                                                                                    'password'  => '',
+                                                                                                                    'dbname'    => 'phpigniter',
+                                                                                                                    'dbprefix'  => '',
+                                                                                                                    'dbtype'    => 'mysql',
+                                                                                                                    'pconnection' =>FALSE
+                                                                              )
+                                                                             /*,'db2' => array(
+                                                                                                                    'host_name' => 'localhost',
+                                                                                                                    'username'  => 'root',
+                                                                                                                    'password'  => '',
+                                                                                                                    'dbname'    => 'test',
+                                                                                                                    'dbprefix'  => '',
+                                                                                                                    'dbtype'    => 'mysql',
+                                                                                                                    'pconnection' =>FALSE                                                                                  
+                                                                              )  */
                                   ),
                                   /*
                                   * Set Global Variables as array

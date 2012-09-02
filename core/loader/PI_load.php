@@ -72,15 +72,14 @@ class load {
                      * 
                      */
                      
-                     function load_helper($file_name = "") {
-                         $directory = "";
+                     function load_helper($file_name = "",$prefix = "PI_") {
+                        $directory = "";
                         $directory = PI_BASEPATH."/helpers/";
                         
                                 if(file_exists($directory.$prefix.$file_name.EXT)) {
-                                         require_once($directory.$file_name.EXT);
-                                                   return new $file_name();                                                                                
+                                         require_once($directory.$prefix.$file_name.EXT);
                                 } else { throw new ErrorException("Unable to load Requested file ".$file_name.EXT); }
-                         unset($file_name);
+                        unset($file_name);
                      }
                      /*
                       *  This function is to load file by default

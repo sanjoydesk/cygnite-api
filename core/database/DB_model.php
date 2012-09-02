@@ -15,11 +15,12 @@
  */                                                                                                                                              
 /* =======================================================================*/
 
+require_once(PI_BASEPATH.'/database/DB_connect'.EXT);
 
-   class PI_Database {
+class PI_Database extends DBConnectionManager {
 
              private $selectQuery = NULL,$from_where =NULL,$field_where = NULL,$field_where_in =NULL,$from_where_in =NULL,$limit_value =NULL;             
-             var $dbConn=NULL;
+             
            //=====================================================//
 
             /**
@@ -30,8 +31,10 @@
             */
 
              function __construct(){                 
-                         $CONFIG = load_file('config','configs');  
-                        $this->dbConnection($CONFIG['PI_config']['DB_CONFIG']);
+                         //$CONFIG = load_file('config','configs');  
+                        //$this->dbConnection($CONFIG['PI_config']['DB_CONFIG']);
+                         
+                        self::db_connect();
              }
              //=====================================================
 
@@ -42,11 +45,19 @@
             * @param	string
             * @return	none
             */
-
+/*
              function dbConnection($connection = array()) {
                                   
+               //  var_dump($connection);exit;
                              switch($connection['dbtype']) {
                                              case 'mysql':
+                                                                        if(is_array($connection))
+                                                                        {
+                                                                            echo "array db";exit;
+                                                                        } else {
+                                                                                echo "sdfsdf";exit;
+                                                                        }
+                                                                        exit;
                                                                         $this->dbConn = mysql_connect($connection['host_name'],$connection['username'],$connection['password']) or die("Cannot Connect to Database");
                                                                         mysql_select_db($connection['dbname'], $this->dbConn);
                                                                         break;
@@ -63,11 +74,20 @@
                              }                 
              }
              
-             function close_connection() {
-	if(!@mysql_close($this->dbConn)){
-	           $this->_throwDBException("Connection close failed !!");
-	} 
-            }
+             */
+             
+                /**
+                * Prevent cloning of DBmodel .
+                *
+                * @access public
+                * @return void
+                */
+                public function __clone() {
+                            // Issue E_USER_ERROR if clone is attempted
+                            trigger_error('Cloning <em>DBmodel</em> is prohibited.', E_USER_ERROR);
+                }
+             
+             
 
            //=====================================================
 
@@ -99,6 +119,11 @@
             */
             public function where($filedName="",$where="")
             {
+                /* Need to write for mysql real escape string  with escape function*/
+                
+                //$filedName = $this->escape($filedName);
+               //  $where = $this->escape($where);
+                 
                         // Check whether value passed as array or not
                        if(is_array($filedName)) {
                            
@@ -197,31 +222,31 @@
                $searchedKey = strpos($this->from_where, "AND");
                $data = array();
                if($searchedKey === false) {
-                   if(is_string($this->from_where)) {
-                       $field_value = "'".$this->from_where."'";
-                   }
-                       if(is_int($this->from_where)) {
-                           $field_value = $this->from_where;
-                       }
-
-                           if($this->field_where !="") {
-                               $where = "WHERE `".$this->field_where."`" ."="."'".$this->from_where."'";
-                           } else {
-                               $where = " ";
+                           if(is_string($this->from_where)) {
+                               $field_value = "'".$this->from_where."'";
                            }
-                               if($this->limit_value != ""  AND $this->offset_value != ""){
-                                   $limitWhere = "LIMIT ".$this->limit_value.",".$this->offset_value."";
-                               } else {
-                                   $limitWhere = " ";
+                               if(is_int($this->from_where)) {
+                                   $field_value = $this->from_where;
                                }
-                            //@var qry as NULL
-                           $qry = "";
-                           $qry = "SELECT ".$this->selectQuery." "."FROM ".$tblname."".$where."".$limitWhere; // Build Select query
-                   $resultArray = mysql_query($qry) or debug_query($qry);
-               while($row = mysql_fetch_array($resultArray,MYSQL_ASSOC))  {
-                   $data[] = $row;
-               }
-               return $data;
+
+                                   if($this->field_where !="") {
+                                       $where = "WHERE `".$this->field_where."`" ."="."'".$this->from_where."'";
+                                   } else {
+                                       $where = " ";
+                                   }
+                                       if($this->limit_value != ""  AND $this->offset_value != ""){
+                                           $limitWhere = "LIMIT ".$this->limit_value.",".$this->offset_value."";
+                                       } else {
+                                           $limitWhere = " ";
+                                       }
+                                    //@var qry as NULL
+                                   $qry = "";
+                                   $qry = "SELECT ".$this->selectQuery." "."FROM ".$tblname."".$where."".$limitWhere; // Build Select query
+                           $resultArray = mysql_query($qry) or $this->debug_query($qry);
+                       while($row = mysql_fetch_array($resultArray,MYSQL_ASSOC))  {
+                           $data[] = $row;
+                       }
+                       return $data;
 
                } else {
 
@@ -239,7 +264,7 @@
                        $qry = "";
                        $qry = "SELECT ".$this->selectQuery." "."FROM "." ".$tblname." WHERE ".$where;
 
-                   $resultArray = mysql_query($qry) or debug_query($qry);
+                   $resultArray = mysql_query($qry) or $this->debug_query($qry);
                    while($row = mysql_fetch_array($resultArray,MYSQL_ASSOC))  {
                        $data[] = $row;
                    }
@@ -275,7 +300,7 @@
                             $fields = implode(",", $fields);
                             $values = implode(",", $values);
                             $bld_qry = "insert into `$tblName`($fields) values"." ($values)";
-                            mysql_query($bld_qry) or debug_query($bld_qry);
+                            mysql_query($bld_qry) or $this->debug_query($bld_qry);
                 return mysql_insert_id();
             }
 
@@ -304,7 +329,7 @@
                         $i++;
                     }
                     $qry .=" where "."`".$this->field_where."`"." = " .$this->from_where;
-                    $return = mysql_query($qry) or debug_query($qry);
+                    $return = mysql_query($qry) or $this->debug_query($qry);
                 return $return;
             }
 
@@ -324,7 +349,7 @@
                     $qry = "";
                     $qry .="Delete from ".$tblName." ";
                     $qry .=" where "."`".$this->field_where."`"." = " .$this->from_where;
-                    $return = mysql_query($qry) or debug_query($qry);
+                    $return = mysql_query($qry) or $this->debug_query($qry);
                 return $return;
              }
 
@@ -361,36 +386,17 @@
                return $output;
            }
            
-           function _throwDBException($msg='') 
-           {
-               
-	if($this->dbConn > 0){
-		$this->error=mysql_error($this->dbConn);
-		$this->errno=mysql_errno($this->dbConn);
-	}
-	else{
-		$this->error=mysql_error();
-		$this->errno=mysql_errno();
-	
-                      echo  '<div style="border:1px solid #D8000C;width:auto;height:auto;">
-                        <span style="border:1px solid #D8000C;"><h3 style="color: red;">Database Error</h3>
-                        <h3>Message:</h3>
-                        <span style="color:#D8000C;background: #FFBABA;"><pre>'.$msg.'</pre></span>
-                        <h3>MySQL Error:</h3>'.$this->error.'                       
-                        </span></div>';
-                  }
-	
-            }
+          
 
           public function __destruct() 
-         {
+         { 
+              $this->close_connection();
               $vars = get_object_vars($this); 
                foreach($vars as $key => $val) {                     
                     //unset($this->$key);
                    $this->$key = NULL;
-                  // var_dump($this->$key);
              } 
-                unset($this->dbConn);
+                
           }
    }
   //if(!empty($_SERVER['REQUEST_URI'])) echo '<tr><td align="right">Script:</td><td><a href="'.$_SERVER['REQUEST_URI'].'">'.$_SERVER['REQUEST_URI'].'</a></td></tr>'; 
