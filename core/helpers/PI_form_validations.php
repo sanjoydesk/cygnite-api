@@ -19,7 +19,8 @@
                 * @return error html
                 */
                 if(!function_exists('validate_require_fields()')) {
-                        function validate_require_fields($required_fields = array(),$required,$submit) {
+                        function validate_require_fields($required_fields = array(),$required,$submit) 
+                        {
 
                                 $num_of_args = func_num_args();					
                                 if ($num_of_args >= 2) {
@@ -36,24 +37,11 @@
                                         $errors_arr = array();
 
                                         foreach ($required_fields as $key=>$val) { 
-                                            $i = 0;
+                                           
                                                 if (isset($_POST[$submit])) {
-                                                    
                                                                 if(is_array($key)) {
-                                                                        foreach($key as $fields => $values){  
-                                                                                if(empty($_POST[$key])) {
-                                                                                    if(is_array($val)) {
-                                                                                           echo $val = $required_fields[$key]["email"];
-                                                                                    }
-                                                                                        $errors_arr[]="<span style='color:#D8000C;'>$val is a required field.</span>";
-                                                                                        if($key[$fields] == "email" || $key["check_email_validity"] == TRUE) {
-                                                                                              $val =  is_valid_email($key);
-                                                                                               
-                                                                                        }
-                                                                                        $errors++;
-                                                                               } $i++;
-                                                                        }
-                                                                        
+                                                                        $errors_arr[]="<span style='color:#D8000C;'>$val is a required field.</span>";
+                                                                        $errors++;
                                                                 } else {                                                    
                                                                         if(empty($_POST[$key])) {
                                                                                 $errors_arr[]="<span style='color:#D8000C;'>$val is a required field.</span>";
@@ -101,15 +89,21 @@
                         }
                 }
                     
-                
-                function trim_str($value){
-                    $trimed_value = trim($value);
-                    return $trimed_value;
+                /*
+                 * This function is used to trim the post values
+                 * @param sting
+                 */
+                if(!function_exists("trim_str()")) { 
+                        function trim_str($value)
+                        {
+                            $trimed_value = trim($value);
+                            return $trimed_value;
+                        }
                 }
             
-                if(!function_exists("is_valid_email()")){
-                    
-                        function is_valid_email($email){             //$fieldname,$is_required,$is_valid
+                if(!function_exists("is_valid_email()")){                    
+                        function is_valid_email($email)
+                        {             
                             $email =  trim_str($email);
                                 if(empty($email)){
                                        //throw new Exception($message, $code, $previous);
@@ -117,16 +111,57 @@
                                 }
                                 if(isset($_POST[$email])) {
                                         $post_email = $_POST[$email];
+                                        //( ! preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE; codeingiter
                                           if(preg_match("/^[a-zA-Z]w+(.w+)*@w+(.[0-9a-zA-Z]+)*.[a-zA-Z]{2,4}$/", $post_email) === 0){
                                                $errEmail = '<font color=red>Email Address not valid: example@example.com</font>';
+                                          } else {
+                                                    return TRUE;
                                           }
-                                        return $errEmail;
-                                }  else 
-                                       $post_email ="";
-                              
-                              
-                                   
+                                }                               
                         }
                 }
                 
+                /*
+                 * This function used to check whether the given value is number or not
+                 *  @param int
+                 * @return boolean TRUE or FALSE
+                 */
+                if(!function_exists("is_num()")){                        
+                        function is_num($value) 
+                        {      
+                                  if (!is_numeric($value)) 
+                                         return FALSE; 
+                                  else 
+                                      return TRUE;
+                        }
+                }
                 
+                /*
+                 * This function used to check whether the given array is number or not
+                 *  @param int
+                 * @return boolean TRUE or FALSE
+                 */
+                  if(!function_exists("is_numeric_array()")){                        
+                        function is_numeric_array($arrayinput = array()) {
+                            foreach ($arrayinput as $key => $value) {
+                                     if (!is_numeric($value)) return FALSE;
+                            }
+                            return TRUE;
+                        }
+                  }      
+
+                  /*
+                   *  This function is used to check password strength
+                   * @param string
+                   * @ return boolean
+                   *  Password must be at least 6 characters and must contain at least one lower case letter, one upper case letter and one digit
+                   */
+                  if(!function_exists("check_pass_strength()")){    
+                      function check_pass_strength($password=""){
+                             // Password must be strong
+                            if(preg_match("/^.*(?=.{6,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/" , $password) === 0) {
+                                    return "Password must be at least 6 characters and must contain at least one lower case letter, one upper case letter and one digit";
+                            }
+                            
+                      }
+                  }
