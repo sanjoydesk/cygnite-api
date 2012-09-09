@@ -413,7 +413,51 @@ class PI_Database extends DBConnectionManager {
                return $output;
            }
            
-          
+      /**
+       *  This function is used to convert date to mysql
+       *  @param date 
+       * @return mysql formate date
+       */
+        function date_to_mysql($input)
+        {
+                $output = false; 
+                $d = array_filter(preg_split('#[-/:. ]#', $input));
+
+                if (is_array($d) && count($d) == 3) {
+                        if (checkdate($d[1], $d[0], $d[2])) {
+                                $output = "$d[2]-$d[1]-$d[0]";
+                        }
+                }else if(is_array($d) && count($d) == 2) {
+                       $output = "$d[1]-$d[0]";
+               }
+                return $output;
+        }
+
+        /**
+       *  This function is used to convert mysql date to general fomate of date
+       *  @param date 
+       * @return mysql formate date
+       */
+        function mysql_to_date($input,$stringmonth = NULL)
+        {
+                $output = false;
+                $d = array_filter(preg_split('#[-/:. ]#', $input));
+
+                if (is_array($d) && (count($d) == 3 || count($d) == 6)) {
+                        if (checkdate($d[1], $d[2], $d[0])) {
+                                if($stringmonth){
+                                        $stringmonth = date("M", mktime(0, 0, 0, ($d[1]))); 
+                                        $output = "$d[2] $stringmonth $d[0]";
+                                }
+                                else
+                                        $output = "$d[2]/$d[1]/$d[0]";
+                        }
+                } else if(is_array($d) && count($d) == 2) {
+                           $output = "$d[1]/$d[0]";
+                }
+                return $output;
+        }	
+
 
           public function __destruct() 
          { 

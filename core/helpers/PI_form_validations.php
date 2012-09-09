@@ -19,9 +19,8 @@
                 * @return error html
                 */
                 if(!function_exists('validate_require_fields()')) {
-                        function validate_require_fields($required_fields = array(),$required,$submit) 
+                        function validate_require_fields($required_fields = array(),$isrequired,$submit) 
                         {
-
                                 $num_of_args = func_num_args();					
                                 if ($num_of_args >= 2) {
                                         if(func_get_arg(1) != 'required')
@@ -32,7 +31,7 @@
                                 
                                 
                                 
-                                if($required == 'required') {
+                                if($isrequired == 'required') {
                                         $errors = 0;
                                         $errors_arr = array();
 
@@ -165,3 +164,18 @@
                             
                       }
                   }
+                  
+                  
+                  
+                /**
+                * Integer
+                *
+                * @param	string
+                * @return	boolean value
+                */
+                if(!function_exists("integer()")) {
+                        function integer($str)
+                        {
+                            return (bool) preg_match('/^[\-+]?[0-9]+$/', $str);
+                        }
+                }
