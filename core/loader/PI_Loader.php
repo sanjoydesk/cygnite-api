@@ -16,8 +16,8 @@
 *=========================================================================
 */
 
-require_once(PI_BASEPATH.'/loader/'.FRAMEWORK_EXTENSION.'load'.EXT);
-require_once(PI_BASEPATH.'/database/'.DATABASE_EXTENSION.'model'.EXT);
+require_once(PI_BASEPATH.'/loader/'.FRAMEWORK_PREFIX.'load'.EXT);
+require_once(PI_BASEPATH.'/database/'.DATABASE_PREFIX.'model'.EXT);
 
 class PI_Controller extends load{
 
