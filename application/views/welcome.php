@@ -9,10 +9,11 @@
     <?php //var_dump($userdetails); ?>
     <span  style="font-weight:bold;margin-top:15px;"> <?php echo "This is Beta version. Soon you can enjoy all its features and simplicity."; ?></span>
 </div>
-<?php echo $errors; ?>
+<?php echo $errors;  ?>
 
 <form method="post" action="<?php echo  "http://localhost/phpignite/index.php/welcome/index";  ?>" >  
     <input type="text"  name="name" />
     <input type="text"  name="country" />
+    <input type="text"  name="email" />
     <input type="submit" name="txtSubmit" value="Submit"/>
 </form>

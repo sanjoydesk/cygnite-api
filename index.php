@@ -59,44 +59,9 @@ define('SYSDIR', trim(strrchr(trim(PI_BASEPATH, '/'), '/'), '/'));
 //Name of the Root Directory 
 define('ROOT_DIR', str_replace("/", "", rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/')));
 
-
-
-
-if($_SERVER['HTTP_HOST'] == "localhost" || $_SERVER['HTTP_HOST'] == "127.0.0.1") {    
-   /*
-    * ------------------------------------------------------
-    *  Define the Environment
-    * ------------------------------------------------------
-    */
-    define('ENVIRONMENT', 'development');
-}
-
-
-
 function file_extension($filename) { return end(explode(".", $filename)); } 
 
-if (defined('ENVIRONMENT'))
-{
-	switch (ENVIRONMENT)
-	{
-		case 'development':
-                error_reporting(E_ALL);
-                //$globalloader =  dirname(__FILE__).DS.$system_path .DS."common".DS ;
-		break;
-	
-		case 'testing':
-		case 'production':
-			    error_reporting(0);
-		break;
-
-		default:
-			exit('The application environment is not set correctly.');
-	}
-}
- 
-
-
-// Set the current directory correctly for CLI requests
+                        // Set the current directory correctly for CLI requests
 
 	if (realpath($system_path) !== FALSE)
 	{
@@ -112,7 +77,7 @@ if (defined('ENVIRONMENT'))
 		exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
 	}
 
-// The path to the "application" folder
+                            // The path to the "application" folder
 	if (is_dir($application_folder))
 	{
 		define('APPPATH', $application_folder.'/');

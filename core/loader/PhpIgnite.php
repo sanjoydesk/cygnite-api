@@ -21,14 +21,28 @@
 define('PI_VERSION', '1.0');
 
 /*
+ * Define Framework Extension
+ * 
+ */
+define('FRAMEWORK_EXTENSION','PI_');
+
+
+/*
+ * Define Database Driver Extension
+ * 
+ */
+define('DATABASE_EXTENSION','DB_');
+
+
+/*
 * ------------------------------------------------------
 *  Load the global Page
 * ------------------------------------------------------
 */
-require(PI_BASEPATH.'/common/PI_common_loader'.EXT);
+require(PI_BASEPATH.'/common/'.FRAMEWORK_EXTENSION.'common_loader'.EXT);
 
 // Load the PI controller class
-require PI_BASEPATH.'/loader/PI_Loader'.EXT;
+require PI_BASEPATH.'/loader/'.FRAMEWORK_EXTENSION.'Loader'.EXT;
 
 
 $default_files = array('uri','profiler');
@@ -59,14 +73,23 @@ $site_url = $OBJ_LOADER[0]->site_url($base_url);
 
 $url_string = $OBJ_LOADER[0]->urisegment('1');
 
+if(empty($defaultController) || $defaultController == "") {
+        throw new ErrorException("Default controller not found ! Please set the default controller in configs/config".EXT);
+}
+
 if(empty($url_string)) {
          $OBJ_LOADER[0]->redirect($defaultController."/index");
 }
 
 
-function &get_instance() {
-         return PI_Controller::get_instance();
+function getGlobalInstance() {
+         return PI_Controller::getInstance();
 }
+
+//$PI = getGlobalInstance($OBJ_LOADER);
+//$PI->_loaded_obj();
+
+
 /* Rewrite url structure*/
 $OBJ_LOADER[0]->urlstucture($defaultController);
 

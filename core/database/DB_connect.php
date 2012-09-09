@@ -58,6 +58,16 @@ abstract class DBConnectionManager
 
         }
         
+        /*
+        protected function _connect($db_name,$user="",$pass="",$driver=""){ 
+                       $connection = mysql_connect('localhost',$user,$pass) or die("Could not establish connection with ".  mysql_error());
+                      mysql_select_db($db_name,$connection) or die("Could not connect with Database ".$db_name);
+                      return $connection;
+       }
+         
+         */
+      
+        
         function close_connection() {
             if(!@mysql_close($this->dbConn)){
                      $this->_throwDBException("Connection close failed !!");

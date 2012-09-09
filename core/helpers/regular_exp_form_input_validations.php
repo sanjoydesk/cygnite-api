@@ -1,4 +1,4 @@
-	<?php
+<?php
 /*
 Form Validation using Regular expressions
 website : http://www.phpjabbers.com/php-validation-and-verification-php27.html

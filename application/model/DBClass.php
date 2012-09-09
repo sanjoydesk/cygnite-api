@@ -4,6 +4,9 @@
 
                  function __construct() {
                        parent::__construct();
+//                       $db1= $this->db->load_db('test','root','','mysql');
+//                       $products = $this->db->find("*")->get_details("products",$db1);
+//                       var_dump($products);
                 }
 
                 public function chkLoginBYUser($submitArray = array()) {
@@ -56,3 +59,5 @@
                          return $data;
                 }
         }
+
+        

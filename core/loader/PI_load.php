@@ -14,6 +14,7 @@
 class load {
                     
                       var $helper = NULL;
+                      
     
                     /*
                     * This function is to load requested model file
@@ -81,16 +82,18 @@ class load {
                                 } else { throw new ErrorException("Unable to load Requested file ".$file_name.EXT); }
                         unset($file_name);
                      }
+                     
+                     
+                     
+                     
                      /*
                       *  This function is to load file by default
                       * 
                       * 
                       */
-                     public function _loaded_obj() {
+                     public function _loadedobj() { echo "singleton Design patterns";
                          //spl_autoload_register();                         
-                            include_once(PI_BASEPATH.'/loader/PhpIgnite'.EXT);       
-                            $this->PI =& get_object();
-                            return $this->PI;
+                          
                      }
-                     
+                                                             
 }

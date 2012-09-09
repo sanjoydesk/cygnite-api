@@ -16,13 +16,14 @@
 *=========================================================================
 */
 
-require_once(PI_BASEPATH.'/loader/PI_load'.EXT);
-require_once(PI_BASEPATH.'/database/DB_model'.EXT);
+require_once(PI_BASEPATH.'/loader/'.FRAMEWORK_EXTENSION.'load'.EXT);
+require_once(PI_BASEPATH.'/database/'.DATABASE_EXTENSION.'model'.EXT);
 
 class PI_Controller extends load{
 
            var $load=NULL;
-           private static $object;
+           /** @var  */
+          private static $instance;
           
             //=====================================================================
             /**
@@ -38,17 +39,22 @@ class PI_Controller extends load{
                $this->load = new load();
               return $this->load;
            }
-           /*
-            * Create the self object of the class
-            * @return object
-            * 
+                     
+            /**
+            * Returns singleton instance with lazy instantiation.
+            * @return 
             */
-           public function get_object() {
-                    return self::$object;
-           }
+            public static function getInstance()
+            {
+                if (self::$instance === NULL) {
+                self::$instance = new static;
+                }
+                return self::$instance;
+            }
            
            function __destruct() {
                unset($this->load);
+               unset($instance);
                unset($object);
            }
 }

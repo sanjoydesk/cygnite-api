@@ -15,7 +15,7 @@
 * ============================================================================
 */
 
-                            function load_file($class, $directory = 'common', $prefix = 'PI_') 
+                            function load_file($class, $directory = 'common', $prefix = FRAMEWORK_EXTENSION) 
                             {
 
                                  $directories = array(PI_BASEPATH, APPPATH);        
@@ -48,7 +48,7 @@
                                                              if($dir_path == APPPATH){ 
                                                                          if (file_exists($dir_path.$directory.'/'.$class.EXT))  {
                                                                               require($dir_path.$directory.'/'.$class.EXT);          
-                                                                              $_has_classes['PI_config'] = $PI_config;
+                                                                              $_has_classes[FRAMEWORK_EXTENSION.'config'] = $PI_config;
                                                                              break;
                                                                          }
                                                              }

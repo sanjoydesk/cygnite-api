@@ -19,7 +19,7 @@ require_once(PI_BASEPATH.'/database/DB_connect'.EXT);
 
 class PI_Database extends DBConnectionManager {
 
-             private $selectQuery = NULL,$from_where =NULL,$field_where = NULL,$field_where_in =NULL,$from_where_in =NULL,$limit_value =NULL;             
+             private $selectQuery = NULL,$from_where =NULL,$field_where = NULL,$field_where_in =NULL,$from_where_in =NULL,$limit_value =NULL;private static $instance;             
              
            //=====================================================//
 
@@ -75,6 +75,18 @@ class PI_Database extends DBConnectionManager {
              }
              
              */
+                /*
+                public function load_db($db_name="",$user_name="",$password="",$db_driver="") {
+                    
+                        $db = $this->get_database();
+                      $db_connection =$db::_connect($db_name,$user_name,$password,$db_driver);
+                       return $db_connection;
+                }
+                
+                private function get_database(){
+                            return "DBConnectionManager";
+                }
+                */
              
                 /**
                 * Prevent cloning of DBmodel .
@@ -86,9 +98,25 @@ class PI_Database extends DBConnectionManager {
                             // Issue E_USER_ERROR if clone is attempted
                             trigger_error('Cloning <em>DBmodel</em> is prohibited.', E_USER_ERROR);
                 }
+                
+             /*
+               *   This function is used to prevent from mysql injection 
+              *  @param array / int
+              *  @retunr array/ int
+              */
+             private function escape_str($values="") {
+                 
+                        if(is_array($values)) {
+                                 $values = array_map('escape_str', $values);
+                        } else {
+                                /* Quote if not integer */
+                                if ( !is_numeric($values) || $values{0} == '0' ) {
+                                $values = "'" .mysql_real_escape_string($values) . "'";
+                                }
+                        }
+                        return $values;
+             }
              
-             
-
            //=====================================================
 
             /**
@@ -119,10 +147,9 @@ class PI_Database extends DBConnectionManager {
             */
             public function where($filedName="",$where="")
             {
-                /* Need to write for mysql real escape string  with escape function*/
-                
-                //$filedName = $this->escape($filedName);
-               //  $where = $this->escape($where);
+                /* mysql real escape string  with escape function*/
+                $filedName = $this->escape_str($filedName);
+                $where = $this->escape_str($where);
                  
                         // Check whether value passed as array or not
                        if(is_array($filedName)) {
@@ -133,7 +160,7 @@ class PI_Database extends DBConnectionManager {
                                 $i = 0;
                                     // create where condition with and if value is passed as array
                                     foreach($filedName as $key=>$value) {
-                                        $this->from_where .= " `".$key."` "."="." '".$value."'"." ";
+                                        $this->from_where .= " `".$this->escape_str($key)."` "."="." '".$this->escape_str($value)."'"." ";
                                         $this->from_where .=  ($i < $arrCount-1) ? ' AND ' : '';
                                         $i++;
                                     }

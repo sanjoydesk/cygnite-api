@@ -4,28 +4,36 @@ class welcome extends PI_Controller {
         
         private $model = NULL,$library = NULL,$profiler = NULL;
 
-		function __construct() 
-		{
-		   parent::__construct();           
-		   $this->profiler = $this->load->load_library('profiler');
-		   $this->profiler->start_profiling();
-		   $this->model = $this->load->model('DBClass');
-		   $this->library = $this->load->load_library('encrypt');
-		   
-		}
+            function __construct() 
+            {
+               parent::__construct();           
+               $this->profiler = $this->load->load_library('profiler');
+               $this->profiler->start_profiling();
+               $this->model = $this->load->model('DBClass');
+               $this->library = $this->load->load_library('encrypt');
+
+            }
 
         public function index() 
         {
-			$data['userdetails']= $this->model->getUserComments();
-			$this->load->load_helper('form_validations');
-			$required_fields=array("name"=>"User Name","country"=>"Country Name");	//,'txtSubmit'			
-			$data['errors'] = validate_fields($required_fields,'required','txtSubmit');
-			
-			$encryt= $this->library->PI_encrypt("admin");
-			$this->library->PI_decrypt($encryt);
-			$data['values'] = "Sanjay";            
-			$this->load->presenter("welcome",$data); 
-			$this->profiler->end_profiling();
+                $data['userdetails']= $this->model->getUserComments();
+                $this->load->load_helper('form_validations');
+                $required_fields = array(
+                                                            "name"=>"User Name",
+                                                            "country"=>"Country Name",
+                                                            "txtemail" => array(
+                                                                                 "email"=>"Email Address",
+                                                                                 "check_email_validity" =>"TRUE"
+                                                            )   
+                                                );	
+                $data['errors']  = validate_require_fields($required_fields,'required','txtSubmit');
+                $data['email']= is_valid_email("email","Email Address","required","checkvalid");
+               echo $data['email'];
+                $encryt= $this->library->PI_encrypt("admin");
+                $this->library->PI_decrypt($encryt);
+                $data['values'] = "Sanjay";            
+                $this->load->presenter("welcome",$data); 
+                $this->profiler->end_profiling();
         }
 		
         public function clearAllVars() 
@@ -42,9 +50,9 @@ class welcome extends PI_Controller {
 
         function unset_all_vars($a)
         {
-			foreach($a as $key => $val) { 
-			    unset($GLOBALS[$key]);
-			}
+                foreach($a as $key => $val) { 
+                    unset($GLOBALS[$key]);
+                }
             return serialize($a);
         }
 
@@ -56,8 +64,11 @@ class welcome extends PI_Controller {
       
         function __destruct() {
        //parent::__destruct();
-            unset($this);
-            echo gc_collect_cycles();      
+	       unset($model);
+		   unset($library);
+		   unset($profiler);
+           unset($this);
+           echo gc_collect_cycles();      
    }
         
 }
