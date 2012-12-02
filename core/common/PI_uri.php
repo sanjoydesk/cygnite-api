@@ -27,18 +27,22 @@ class PI_uri {
         *
         */
 
-        function urlstucture($defaultController="") 
+       public  function urlstucture($defaultController="") 
         {          
                     $uristring = explode('/',($_SERVER['REQUEST_URI']));
                     $indexCount = array_search($this->index_page,$uristring);
                     
                     $_obj_controller = "";
-                    if(file_exists(APPPATH."controllers/".$uristring[$indexCount+1].EXT)) {
-                                  require_once(APPPATH."controllers/".$uristring[$indexCount+1].EXT);
+                    if(file_exists(APPPATH."controllers".DS.$uristring[$indexCount+1].EXT)) {
+                                  require_once(APPPATH."controllers".DS.$uristring[$indexCount+1].EXT);
+                                //  echo $uristring[$indexCount+1];
+                                  // $controller_name = $this->formController($uristring[$indexCount+1]);
+                                  
                                  $_obj_controller = new $uristring[$indexCount+1]();
                      }                     
                      if(empty($indexCount) AND empty($_obj_controller)) {     
-                                require_once(APPPATH."controllers/".$defaultController.EXT);
+                                require_once(APPPATH."controllers".DS.$defaultController.EXT);
+                                
                                $_obj_controller = new $defaultController();
                                call_user_func_array(array($_obj_controller,$this->default_method), (array_slice($uristring,$indexCount+1)));
                                unset($_obj_controller);                           
@@ -50,15 +54,25 @@ class PI_uri {
                                  call_user_func_array(array($_obj_controller, $uristring[$indexCount+2]), (array_slice($uristring,$indexCount+3)));
                                  unset($_obj_controller);
                      } else{ 
-                                $this->redirect($this->index_page.'/'.$defaultController.'/'.$this->default_method);
+                                $this->redirect($this->index_page.DS.$defaultController.DS.$this->default_method);
                    }
             }
             
-            function site_url($uri = '') {
+             private function formController($controller_name)
+            {
+                 if(!empty($controller_name))
+                        $controller_standard_name = ucfirst($controller).'Controller';
+                 return $controller_standard_name;
+            }
+            
+            
+            
+            
+           public function site_url($uri = '') {
                     return $uri;
            }
            
-         function redirect($uri = '', $type = 'location', $http_response_code = 302)
+         public function redirect($uri = '', $type = 'location', $http_response_code = 302)
         {
             
             if ( ! preg_match('#^https?://#i', $uri))
@@ -77,7 +91,7 @@ class PI_uri {
             exit;
         }
            
-           function urisegment($uri="") {
+          public  function urisegment($uri="") {
                         
                         $uristring = "";
                         $uristring = explode('/',($_SERVER['REQUEST_URI']));
