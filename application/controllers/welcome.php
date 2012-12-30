@@ -1,23 +1,28 @@
 <?php if ( ! defined('PI_BASEPATH')) exit('No direct script access allowed');
 
-class welcome extends PI_Controller {
+class WelcomeApplicationController extends PI_Controller {
         
-        private $model = NULL,$library = NULL,$profiler = NULL;
+        private $library = NULL,$profiler = NULL; //$session = NULL,
 
             function __construct() 
             {
-               parent::__construct();           
-               $this->profiler = $this->load->load_library('profiler');
+                parent::__construct(); 
+               //$this->session = PI_Controller::storeObject('session', 'PI_SecureSession');
+               //$this->session->set('name','PI Session');
+               //echo $this->session->get('name');  
+                
+               $this->profiler = $this->load->library('profiler');
                $this->profiler->start_profiling();
-               $this->model = $this->load->model('DBClass');
-               $this->library = $this->load->load_library('encrypt');
-
+               $this->load->model('DBClass'); 
+               $this->library = $this->load->library('encrypt');
             }
 
         public function index() 
         {
-                $data['userdetails']= $this->model->getUserComments();
-                $this->load->load_helper('form_validations');
+                // $this->model = $this->load->model('DBClass');  $data['userdetails']= $this->model->getdetails();
+                $data['userdetails']=  PI_AppLoader::$_model->getdetails(); 
+                
+                $this->load->helper('form_validations');
                 $required_fields = array(
                                                             "name"=>"User Name",
                                                             "country"=>"Country Name",
@@ -28,10 +33,15 @@ class welcome extends PI_Controller {
                                                 );	
                 $data['errors']  = validate_require_fields($required_fields,'required','txtSubmit');
                 $data['email']= is_valid_email("email","Email Address","required","checkvalid");
-               echo $data['email'];
-                $encryt= $this->library->PI_encrypt("admin");
+               
+                $encryt= $this->library->PI_encrypt("sanjoy");
                 $this->library->PI_decrypt($encryt);
                 $data['values'] = "Sanjay";            
+                $data1 = PI_AppLoader::$_model->getProducts();
+			
+                var_dump($data['userdetails']);
+                
+                
                 $this->load->presenter("welcome",$data); 
                 $this->profiler->end_profiling();
         }
@@ -40,8 +50,7 @@ class welcome extends PI_Controller {
         { 
           $vars = get_object_vars($this); 
           echo "<pre>";
-          print_r($vars);
-          //exit;
+         // print_r($vars);
           foreach($vars as $key => $val) { 
             // $this->$key = null; 
              // unset($this->$key);
@@ -55,20 +64,13 @@ class welcome extends PI_Controller {
                 }
             return serialize($a);
         }
-
-
-
-        function test() {
-            echo "<br>test"."<br>";                 
-        }
-      
+     
         function __destruct() {
-       //parent::__destruct();
-	       unset($model);
-		   unset($library);
-		   unset($profiler);
-           unset($this);
-           echo gc_collect_cycles();      
-   }
-        
+                //parent::__destruct();
+                unset($this->model);
+                unset($this->library);
+                unset($this->profiler);
+                unset($this);
+                gc_collect_cycles();      
+       }        
 }

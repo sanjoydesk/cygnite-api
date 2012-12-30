@@ -12,7 +12,7 @@
 */
 
 $PI_config['autoload'] = array(    
-                                                        'helpers' => array('url','encrypt'), /* Autoload Helper Files */
-                                                        'libraries' => array('session'), /* Autoload Library Files*/
+                                                        'helpers' => array('encrypt'), /* Autoload Helper Files */
+                                                        'libraries' => array(''), /* Autoload Library Files*/
                                                         'model'    => array()   /* Autoload Model Files*/
 );

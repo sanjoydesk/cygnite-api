@@ -34,26 +34,26 @@ return $PI_config = array(
                                   * @prototype set database type
                                   * @prototype set database persistance connection TRUE or FALSE
                                   */
-                                  'DB_CONFIG' => array(
-                                                                          'db1' =>array( 
-                                                                                                                    'host_name' => 'localhost',
-                                                                                                                    'username'  => 'root',
-                                                                                                                    'password'  => '',
-                                                                                                                    'dbname'    => 'phpigniter',
-                                                                                                                    'dbprefix'  => '',
-                                                                                                                    'dbtype'    => 'mysql',
-                                                                                                                    'pconnection' =>FALSE
-                                                                              )
-                                                                             /*,'db2' => array(
-                                                                                                                    'host_name' => 'localhost',
-                                                                                                                    'username'  => 'root',
-                                                                                                                    'password'  => '',
-                                                                                                                    'dbname'    => 'test',
-                                                                                                                    'dbprefix'  => '',
-                                                                                                                    'dbtype'    => 'mysql',
-                                                                                                                    'pconnection' =>FALSE                                                                                  
-                                                                              )  */
-                                  ),
+                                                    'DB_CONFIG' => array(
+                                                                            'db' =>array( 
+                                                                                            'host_name' => 'localhost',
+                                                                                            'username'  => 'root',
+                                                                                            'password'  => '',
+                                                                                            'dbname'    => 'phpigniter',
+                                                                                            'dbprefix'  => '',
+                                                                                            'dbtype'    => 'mysql',
+                                                                                            'pconnection' =>FALSE
+                                                                            )
+                                                                           ,'db2' => array(
+                                                                                            'host_name' => 'localhost',
+                                                                                            'username'  => 'root',
+                                                                                            'password'  => '',
+                                                                                            'dbname'    => 'test',
+                                                                                            'dbprefix'  => '',
+                                                                                            'dbtype'    => 'mysql',
+                                                                                            'pconnection' =>FALSE                                                                                  
+                                                                            ) 
+                                                    ),
                                   /*
                                   * Set Global Variables as array
                                   * @prototype set base_path
@@ -64,7 +64,8 @@ return $PI_config = array(
                                   'GLOBAL_VAR' => array(
                                                                                 'base_path'  => 'http://localhost/phpignite/',
                                                                                 'default_controller' => 'welcome',
-                                                                                'encryption_key' => 'phpignite-sha1',
+                                                                                'pi_session' => TRUE,
+                                                                                'pi_encryption_key' => 'phpignite-sha1',
                                                                                 'enable_profiling' => TRUE
                                   )
 );
