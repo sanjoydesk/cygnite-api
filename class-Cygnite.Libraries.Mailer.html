@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Cygnite\Libraries\Mailer | Cygnite Framework</title>
+
+	<script type="text/javascript" src="resources/combined.js?1196931423"></script>
+	<script type="text/javascript" src="elementlist.js?3312250046"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Apps.html">Apps<span></span></a>
+						<ul>
+				<li><a href="namespace-Apps.Components.html">Components<span></span></a>
+						<ul>
+				<li><a href="namespace-Apps.Components.Libs.html">Libs</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Apps.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Apps.Models.html">Models</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Cygnite.html">Cygnite<span></span></a>
+						<ul>
+				<li><a href="namespace-Cygnite.Base.html">Base</a>
+						</li>
+				<li><a href="namespace-Cygnite.Database.html">Database</a>
+						</li>
+				<li><a href="namespace-Cygnite.Helpers.html">Helpers</a>
+						</li>
+				<li class="active"><a href="namespace-Cygnite.Libraries.html">Libraries<span></span></a>
+						<ul>
+				<li><a href="namespace-Cygnite.Libraries.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Cygnite.Libraries.Cache.Storage.html">Storage</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Cygnite.Libraries.Globals.html">Globals</a>
+						</li>
+				<li><a href="namespace-Cygnite.Libraries.Phpmailer.html">Phpmailer</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Cygnite.Loader.html">Loader</a>
+						</li>
+				<li><a href="namespace-Cygnite.Sparker.html">Sparker</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Cygnite.Libraries.CF_Form_Elements.html">CF_Form_Elements</a></li>
+				<li><a href="class-Cygnite.Libraries.CForm.html">CForm</a></li>
+				<li><a href="class-Cygnite.Libraries.Cookie.html">Cookie</a></li>
+				<li><a href="class-Cygnite.Libraries.Downloader.html">Downloader</a></li>
+				<li><a href="class-Cygnite.Libraries.Encrypt.html">Encrypt</a></li>
+				<li><a href="class-Cygnite.Libraries.Errorhandler.html">Errorhandler</a></li>
+				<li><a href="class-Cygnite.Libraries.Files.html">Files</a></li>
+				<li><a href="class-Cygnite.Libraries.FormValidator.html">FormValidator</a></li>
+				<li><a href="class-Cygnite.Libraries.Get.html">Get</a></li>
+				<li><a href="class-Cygnite.Libraries.HttpRequest.html">HttpRequest</a></li>
+				<li><a href="class-Cygnite.Libraries.Inflectors.html">Inflectors</a></li>
+				<li><a href="class-Cygnite.Libraries.Input.html">Input</a></li>
+				<li><a href="class-Cygnite.Libraries.Label.html">Label</a></li>
+				<li class="active"><a href="class-Cygnite.Libraries.Mailer.html">Mailer</a></li>
+				<li><a href="class-Cygnite.Libraries.Pdf.html">Pdf</a></li>
+				<li><a href="class-Cygnite.Libraries.Post.html">Post</a></li>
+				<li><a href="class-Cygnite.Libraries.Request.html">Request</a></li>
+				<li><a href="class-Cygnite.Libraries.Security.html">Security</a></li>
+				<li><a href="class-Cygnite.Libraries.Select.html">Select</a></li>
+				<li><a href="class-Cygnite.Libraries.Textarea.html">Textarea</a></li>
+				<li><a href="class-Cygnite.Libraries.Upload.html">Upload</a></li>
+				<li><a href="class-Cygnite.Libraries.Zip.html">Zip</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Cygnite.Libraries.html" title="Summary of Cygnite\Libraries"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Mailer</h1>
+
+
+	<div class="description">
+	
+<p>PHP email creation and transport class</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html"><span>Cygnite\Libraries\Phpmailer\Email</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Cygnite\Libraries\Mailer</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Cygnite.html">Cygnite</a>\<a href="namespace-Cygnite.Libraries.html">Libraries</a><br />
+		<b>Package:</b> PHPMailer<br />
+
+		<b>Located at</b> <a href="source-class-Cygnite.Libraries.Mailer.html#75-82" title="Go to source code">packages/cygnite/libraries/mailer.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Cygnite.Libraries.Mailer.html#77-80" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			
+<p>Constructor</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Constructor</p>
+
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Cygnite.Libraries.Phpmailer.Email.html#___construct">Cygnite\Libraries\Phpmailer\Email::__construct()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Cygnite.Libraries.Phpmailer.Email.html#methods">Cygnite\Libraries\Phpmailer\Email</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddAddress">AddAddress()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddAnAddress">AddAnAddress()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddAttachment">AddAttachment()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddBCC">AddBCC()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddCC">AddCC()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddCustomHeader">AddCustomHeader()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddEmbeddedImage">AddEmbeddedImage()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddReplyTo">AddReplyTo()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddStringAttachment">AddStringAttachment()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddStringEmbeddedImage">AddStringEmbeddedImage()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddrAppend">AddrAppend()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AddrFormat">AddrFormat()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AlternativeExists">AlternativeExists()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AttachAll">AttachAll()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_AttachmentExists">AttachmentExists()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_Base64EncodeWrapMB">Base64EncodeWrapMB()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_ClearAddresses">ClearAddresses()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_ClearAllRecipients">ClearAllRecipients()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_ClearAttachments">ClearAttachments()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_ClearBCCs">ClearBCCs()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_ClearCCs">ClearCCs()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_ClearCustomHeaders">ClearCustomHeaders()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_ClearReplyTos">ClearReplyTos()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_CreateBody">CreateBody()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_CreateHeader">CreateHeader()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_DKIM_Add">DKIM_Add()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_DKIM_BodyC">DKIM_BodyC()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_DKIM_HeaderC">DKIM_HeaderC()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_DKIM_QP">DKIM_QP()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_DKIM_Sign">DKIM_Sign()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_EncodeFile">EncodeFile()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_EncodeHeader">EncodeHeader()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_EncodeQ">EncodeQ()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_EncodeQP">EncodeQP()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_EncodeQPphp">EncodeQPphp()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_EncodeString">EncodeString()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_EndBoundary">EndBoundary()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_FixEOL">FixEOL()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_GetAttachments">GetAttachments()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_GetBoundary">GetBoundary()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_GetMailMIME">GetMailMIME()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_GetSentMIMEMessage">GetSentMIMEMessage()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_GetTranslations">GetTranslations()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_HasMultiBytes">HasMultiBytes()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_HeaderLine">HeaderLine()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_InlineImageExists">InlineImageExists()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_IsError">IsError()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_IsHTML">IsHTML()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_IsMail">IsMail()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_IsQmail">IsQmail()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_IsSMTP">IsSMTP()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_IsSendmail">IsSendmail()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_Lang">Lang()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_MailSend">MailSend()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_MsgHTML">MsgHTML()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_NormalizeBreaks">NormalizeBreaks()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_PostSend">PostSend()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_PreSend">PreSend()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_RFCDate">RFCDate()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_SecureHeader">SecureHeader()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_Send">Send()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_SendmailSend">SendmailSend()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_ServerHostname">ServerHostname()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_SetError">SetError()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_SetFrom">SetFrom()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_SetLanguage">SetLanguage()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_SetMessageType">SetMessageType()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_SetWordWrap">SetWordWrap()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_Sign">Sign()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_SmtpClose">SmtpClose()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_SmtpConnect">SmtpConnect()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_SmtpSend">SmtpSend()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_TextLine">TextLine()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_UTF8CharBoundary">UTF8CharBoundary()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_ValidateAddress">ValidateAddress()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_WrapText">WrapText()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#___destruct">__destruct()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#__mime_types">_mime_types()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_doCallback">doCallback()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_edebug">edebug()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_filenameToType">filenameToType()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_html2text">html2text()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_mb_pathinfo">mb_pathinfo()</a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#_set">set()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+	<table class="summary inherited">
+	<caption>Constants inherited from <a href="class-Cygnite.Libraries.Phpmailer.Email.html#constants">Cygnite\Libraries\Phpmailer\Email</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#CRLF"><b>CRLF</b></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#STOP_CONTINUE"><b>STOP_CONTINUE</b></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#STOP_CRITICAL"><b>STOP_CRITICAL</b></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#STOP_MESSAGE"><b>STOP_MESSAGE</b></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Cygnite.Libraries.Phpmailer.Email.html#properties">Cygnite\Libraries\Phpmailer\Email</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$AllowEmpty"><var>$AllowEmpty</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$AltBody"><var>$AltBody</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$AuthType"><var>$AuthType</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Body"><var>$Body</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$CharSet"><var>$CharSet</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$ConfirmReadingTo"><var>$ConfirmReadingTo</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$ContentType"><var>$ContentType</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$CustomHeader"><var>$CustomHeader</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$DKIM_domain"><var>$DKIM_domain</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$DKIM_identity"><var>$DKIM_identity</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$DKIM_passphrase"><var>$DKIM_passphrase</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$DKIM_private"><var>$DKIM_private</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$DKIM_selector"><var>$DKIM_selector</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Debugoutput"><var>$Debugoutput</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Encoding"><var>$Encoding</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$ErrorInfo"><var>$ErrorInfo</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$From"><var>$From</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$FromName"><var>$FromName</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Helo"><var>$Helo</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Host"><var>$Host</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Hostname"><var>$Hostname</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Ical"><var>$Ical</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$LE"><var>$LE</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$MIMEBody"><var>$MIMEBody</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$MIMEHeader"><var>$MIMEHeader</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Mailer"><var>$Mailer</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$MessageDate"><var>$MessageDate</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$MessageID"><var>$MessageID</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Password"><var>$Password</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$PluginDir"><var>$PluginDir</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Port"><var>$Port</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Priority"><var>$Priority</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Realm"><var>$Realm</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$ReplyTo"><var>$ReplyTo</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$ReturnPath"><var>$ReturnPath</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$SMTPAuth"><var>$SMTPAuth</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$SMTPDebug"><var>$SMTPDebug</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$SMTPKeepAlive"><var>$SMTPKeepAlive</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$SMTPSecure"><var>$SMTPSecure</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Sender"><var>$Sender</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Sendmail"><var>$Sendmail</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$SingleTo"><var>$SingleTo</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$SingleToArray"><var>$SingleToArray</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Subject"><var>$Subject</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Timeout"><var>$Timeout</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$UseSendmailOptions"><var>$UseSendmailOptions</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Username"><var>$Username</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Version"><var>$Version</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$WordWrap"><var>$WordWrap</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$Workstation"><var>$Workstation</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$XMailer"><var>$XMailer</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$action_function"><var>$action_function</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$all_recipients"><var>$all_recipients</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$attachment"><var>$attachment</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$bcc"><var>$bcc</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$boundary"><var>$boundary</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$cc"><var>$cc</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$do_verp"><var>$do_verp</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$error_count"><var>$error_count</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$exceptions"><var>$exceptions</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$language"><var>$language</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$mailHeader"><var>$mailHeader</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$message_type"><var>$message_type</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$sign_cert_file"><var>$sign_cert_file</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$sign_key_file"><var>$sign_key_file</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$sign_key_pass"><var>$sign_key_pass</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$smtp"><var>$smtp</var></a>, 
+			<a href="class-Cygnite.Libraries.Phpmailer.Email.html#$to"><var>$to</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Cygnite Framework API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
